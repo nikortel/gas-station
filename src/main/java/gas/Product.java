@@ -7,19 +7,18 @@ import example.valuebject.UnitPrice;
 import java.math.RoundingMode;
 
 public class Product {
-    public enum Type { E10, E98, DIESEL }
 
-    private final Type type;
+    private final ProductType type;
     private final VolumeUnit unit;
     private final UnitPrice unitPrice;
 
-    public Product(Type type, VolumeUnit unit, UnitPrice unitPrice) {
+    public Product(ProductType type, VolumeUnit unit, UnitPrice unitPrice) {
         this.type = type;
         this.unit = unit;
         this.unitPrice = unitPrice;
     }
 
-    public Type type() {
+    public ProductType type() {
         return type;
     }
 

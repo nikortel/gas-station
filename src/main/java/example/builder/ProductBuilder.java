@@ -2,24 +2,24 @@ package example.builder;
 
 import example.valuebject.UnitPrice;
 import gas.Product;
-import gas.Product.Type;
+import gas.ProductType;
 import gas.VolumeUnit;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 
-import static gas.Product.Type.*;
+import static gas.ProductType.*;
 import static gas.VolumeUnit.GALLON;
 import static gas.VolumeUnit.LITER;
 
 public class ProductBuilder {
-    private Type type;
+    private ProductType type;
     private VolumeUnit unit;
     private BigDecimal costPerUnit;
     private Currency currency;
 
-    public ProductBuilder(Type type) {
+    public ProductBuilder(ProductType type) {
         this.type = type;
     }
 

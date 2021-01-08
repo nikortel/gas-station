@@ -29,9 +29,6 @@ public class UnitPrice {
      * @return
      */
     public Money grandTotal(BigDecimal units, RoundingMode roundingMode) {
-        Objects.requireNonNull(units);
-        Objects.requireNonNull(roundingMode);
-
         var scaledGrandTotal = units
                 .multiply(price)
                 .setScale(currency.getDefaultFractionDigits(), roundingMode);
@@ -46,9 +43,6 @@ public class UnitPrice {
      * @return
      */
     public BigDecimal units(Money money, RoundingMode roundingMode) {
-        Objects.requireNonNull(money);
-        Objects.requireNonNull(roundingMode);
-
         if (currency != money.currency()) {
             throw new IllegalArgumentException("Incorrect currency!");
         }

@@ -17,30 +17,30 @@ public class Pump {
         this.tanks.addAll(tanks);
     }
 
-    public DeciliterVolume fillTank(Product.Type type) {
+    public DeciliterVolume fillTank(ProductType type) {
         return findByType(type).fill();
     }
 
-    public Receipt get(DeciliterVolume volume, Product.Type type) {
+    public Receipt get(DeciliterVolume volume, ProductType type) {
         Tank tank = findByType(type);
         DeciliterVolume removed = tank.remove(volume);
         Money cost = tank.calculateCost(removed);
         return new Receipt(removed, cost);
     }
 
-    public Receipt get(Money money, Product.Type type) {
+    public Receipt get(Money money, ProductType type) {
         Tank tank = findByType(type);
         return get(tank.calculateVolume(money), type);
     }
 
-    public Tank findByType(Product.Type type) {
+    public Tank findByType(ProductType type) {
         return tanks.stream()
                 .filter(byType(type))
                 .findFirst()
                 .orElseThrow();
     }
 
-    private Predicate<Tank> byType(Product.Type type) {
+    private Predicate<Tank> byType(ProductType type) {
         return x -> type.equals(x.type());
     }
 

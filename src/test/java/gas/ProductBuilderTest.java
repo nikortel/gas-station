@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-import static gas.Product.Type.E10;
+import static gas.ProductType.E10;
 import static gas.VolumeUnit.LITER;
 import static org.junit.jupiter.api.Assertions.*;
 
