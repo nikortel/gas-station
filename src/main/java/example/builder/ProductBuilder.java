@@ -3,15 +3,15 @@ package example.builder;
 import example.valuebject.UnitPrice;
 import gas.Product;
 import gas.ProductType;
-import gas.VolumeUnit;
+import example.valuebject.VolumeUnit;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 
 import static gas.ProductType.*;
-import static gas.VolumeUnit.GALLON;
-import static gas.VolumeUnit.LITER;
+import static example.valuebject.VolumeUnit.GALLON;
+import static example.valuebject.VolumeUnit.LITER;
 
 public class ProductBuilder {
     private ProductType type;

@@ -8,10 +8,12 @@ import example.valuebject.Money;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.NoSuchElementException;
 
+import static gas.ProductType.DIESEL;
 import static gas.ProductType.E10;
-import static gas.VolumeUnit.GALLON;
-import static gas.VolumeUnit.LITER;
+import static example.valuebject.VolumeUnit.GALLON;
+import static example.valuebject.VolumeUnit.LITER;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PumpTest {
@@ -44,6 +46,12 @@ class PumpTest {
         Receipt receipt = pump.get(Money.eur(BigDecimal.TEN), E10);
         Receipt expected = new Receipt(new DeciliterVolume(new BigDecimal("64.80")), Money.eur(BigDecimal.TEN));
         assertEquals(expected, receipt);
+    }
+
+    @Test
+    public void noSuchProductThrowsException() {
+        Pump pump = createE10PumpForTest();
+        assertThrows(NoSuchElementException.class, () -> pump.fillTank(DIESEL));
     }
 
     private Pump createE10PumpForTest() {

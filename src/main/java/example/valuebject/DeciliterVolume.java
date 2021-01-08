@@ -1,12 +1,8 @@
 package example.valuebject;
 
-import gas.VolumeUnit;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
-
-import static gas.VolumeUnit.DECILITER;
 
 /**
  * Represents volume of liquid in deciliters

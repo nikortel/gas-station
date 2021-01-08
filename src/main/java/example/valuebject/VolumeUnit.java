@@ -1,4 +1,4 @@
-package gas;
+package example.valuebject;
 
 import java.math.BigDecimal;
 

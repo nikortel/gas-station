@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Currency;
 
 import static gas.ProductType.E10;
-import static gas.VolumeUnit.LITER;
+import static example.valuebject.VolumeUnit.LITER;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductBuilderTest {
