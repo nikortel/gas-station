@@ -1,7 +1,7 @@
 package gas;
 
-import example.valuebject.DeciliterVolume;
-import example.valuebject.Money;
+import example.valueobject.DeciliterVolume;
+import example.valueobject.Money;
 
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
 package example.builder;
 
-import example.valuebject.DeciliterVolume;
+import example.valueobject.DeciliterVolume;
 import gas.Product;
 import gas.Tank;
 

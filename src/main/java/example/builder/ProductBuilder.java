@@ -1,17 +1,17 @@
 package example.builder;
 
-import example.valuebject.UnitPrice;
+import example.valueobject.UnitPrice;
+import example.valueobject.VolumeUnit;
 import gas.Product;
 import gas.ProductType;
-import example.valuebject.VolumeUnit;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 
+import static example.valueobject.VolumeUnit.GALLON;
 import static gas.ProductType.*;
-import static example.valuebject.VolumeUnit.GALLON;
-import static example.valuebject.VolumeUnit.LITER;
+import static example.valueobject.VolumeUnit.LITER;
 
 public class ProductBuilder {
     private ProductType type;

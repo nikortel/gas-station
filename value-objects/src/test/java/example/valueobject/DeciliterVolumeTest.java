@@ -1,6 +1,5 @@
-package example.valueObject;
+package example.valueobject;
 
-import example.valuebject.DeciliterVolume;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

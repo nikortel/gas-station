@@ -1,9 +1,9 @@
 package gas;
 
-import example.valuebject.DeciliterVolume;
-import example.valuebject.Money;
-import example.valuebject.UnitPrice;
-import example.valuebject.VolumeUnit;
+import example.valueobject.DeciliterVolume;
+import example.valueobject.Money;
+import example.valueobject.UnitPrice;
+import example.valueobject.VolumeUnit;
 
 import java.math.RoundingMode;
 

@@ -3,8 +3,8 @@ package gas;
 import example.builder.ProductBuilder;
 import example.builder.PumpBuilder;
 import example.builder.TankBuilder;
-import example.valuebject.DeciliterVolume;
-import example.valuebject.Money;
+import example.valueobject.DeciliterVolume;
+import example.valueobject.Money;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -12,8 +12,8 @@ import java.util.NoSuchElementException;
 
 import static gas.ProductType.DIESEL;
 import static gas.ProductType.E10;
-import static example.valuebject.VolumeUnit.GALLON;
-import static example.valuebject.VolumeUnit.LITER;
+import static example.valueobject.VolumeUnit.GALLON;
+import static example.valueobject.VolumeUnit.LITER;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PumpTest {

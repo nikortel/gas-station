@@ -1,7 +1,5 @@
-package example.valueObject;
+package example.valueobject;
 
-import example.valuebject.Money;
-import example.valuebject.UnitPrice;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -9,6 +7,7 @@ import java.math.RoundingMode;
 import java.util.Currency;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UnitPriceTest {
 

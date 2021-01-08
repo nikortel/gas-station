@@ -1,4 +1,4 @@
-package example.valuebject;
+package example.valueobject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

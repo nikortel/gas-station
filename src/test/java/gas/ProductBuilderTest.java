@@ -1,14 +1,14 @@
 package gas;
 
 import example.builder.ProductBuilder;
-import example.valuebject.UnitPrice;
+import example.valueobject.UnitPrice;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 
 import static gas.ProductType.E10;
-import static example.valuebject.VolumeUnit.LITER;
+import static example.valueobject.VolumeUnit.LITER;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductBuilderTest {

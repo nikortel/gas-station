@@ -1,7 +1,7 @@
 package gas;
 
 import example.builder.ProductBuilder;
-import example.valuebject.DeciliterVolume;
+import example.valueobject.DeciliterVolume;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
