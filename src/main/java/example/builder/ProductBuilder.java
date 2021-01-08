@@ -1,7 +1,9 @@
-package gas;
+package example.builder;
 
 import example.valuebject.UnitPrice;
+import gas.Product;
 import gas.Product.Type;
+import gas.VolumeUnit;
 
 import java.math.BigDecimal;
 import java.util.Currency;

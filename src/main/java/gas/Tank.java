@@ -90,4 +90,8 @@ public class Tank {
         return product.calculateUnits(money);
     }
 
+    public Product.Type type() {
+        return product.type();
+    }
+
 }
