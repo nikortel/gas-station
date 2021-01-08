@@ -1,8 +1,8 @@
 package example.builder;
 
+import example.gasstation.Product;
+import example.gasstation.Tank;
 import example.valueobject.DeciliterVolume;
-import gas.Product;
-import gas.Tank;
 
 import java.math.BigDecimal;
 

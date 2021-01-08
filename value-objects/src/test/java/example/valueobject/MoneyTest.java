@@ -13,8 +13,7 @@ import java.util.Currency;
 import static example.valueobject.Money.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(JUnitPlatform.class)
-class MoneyTest {
+public class MoneyTest {
 
     @Test
     public void doesNotAllowNegativeMoney() {

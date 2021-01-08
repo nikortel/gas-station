@@ -1,6 +1,7 @@
 package example.valueobject;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

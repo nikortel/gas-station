@@ -1,4 +1,4 @@
-package gas;
+package example.gasstation;
 
 import example.valueobject.DeciliterVolume;
 import example.valueobject.Money;

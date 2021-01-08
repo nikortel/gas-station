@@ -1,7 +1,7 @@
 package example.builder;
 
-import gas.Pump;
-import gas.Tank;
+import example.gasstation.Pump;
+import example.gasstation.Tank;
 
 import java.util.ArrayList;
 import java.util.Collection;

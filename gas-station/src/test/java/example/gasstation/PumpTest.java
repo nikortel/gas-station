@@ -1,4 +1,4 @@
-package gas;
+package example.gasstation;
 
 import example.builder.ProductBuilder;
 import example.builder.PumpBuilder;
@@ -10,13 +10,14 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.NoSuchElementException;
 
-import static gas.ProductType.DIESEL;
-import static gas.ProductType.E10;
+import static example.gasstation.ProductType.DIESEL;
+import static example.gasstation.ProductType.E10;
 import static example.valueobject.VolumeUnit.GALLON;
 import static example.valueobject.VolumeUnit.LITER;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class PumpTest {
+public class PumpTest {
 
     @Test
     public void getLiterOfGas() {

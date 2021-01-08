@@ -2,15 +2,15 @@ package example.builder;
 
 import example.valueobject.UnitPrice;
 import example.valueobject.VolumeUnit;
-import gas.Product;
-import gas.ProductType;
+import example.gasstation.Product;
+import example.gasstation.ProductType;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 
+import static example.gasstation.ProductType.*;
 import static example.valueobject.VolumeUnit.GALLON;
-import static gas.ProductType.*;
 import static example.valueobject.VolumeUnit.LITER;
 
 public class ProductBuilder {

@@ -1,4 +1,4 @@
-package gas;
+package example.gasstation;
 
 import example.builder.ProductBuilder;
 import example.valueobject.DeciliterVolume;
@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ONE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TankTest {
+public class TankTest {
 
     private Product e95 = ProductBuilder
             .e98Builder()
