@@ -13,6 +13,7 @@ import java.util.Currency;
 import static example.valueobject.Money.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(JUnitPlatform.class)
 public class MoneyTest {
 
     @Test
