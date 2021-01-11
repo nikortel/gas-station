@@ -1,11 +1,14 @@
 package example.valueobject;
 
+import example.conversion.Converter;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.Objects;
+import java.util.function.Function;
 
-import static example.valueobject.VolumeUnit.*;
+import static java.math.BigDecimal.ONE;
 
 /**
  * Describes unit price for something.
@@ -51,33 +54,20 @@ public class UnitPrice {
 
     /**
      * Converts unit price into unit price in another unit
-     * @param unit The target unit
+     *
+     * @param toUnit The target unit
      * @return Unit price in requested unit
      */
-    public UnitPrice convert(VolumeUnit unit) {
-        switch (this.unit) {
-            case DECILITER: return fromDeciliterTo(unit);
-            case LITER: return fromLiterTo(unit);
-            default: throw new IllegalArgumentException(String.format("Cannot convert from %s to %s", this.unit, unit));
-        }
-  }
+    public UnitPrice convert(VolumeUnit toUnit) {
+        Function<BigDecimal, BigDecimal> converter = Converter.conversion(unit, toUnit);
+        BigDecimal unitInNewUnits = Converter.conversion(unit, toUnit).apply(ONE.setScale(10));
 
-    private UnitPrice fromDeciliterTo(VolumeUnit unit) {
-        switch (unit) {
-            case DECILITER: return this;
-            case LITER: return new UnitPrice(LITER, this.price.multiply(LITER.deciliterMultiplier), this.currency);
-            case GALLON: return new UnitPrice(GALLON, this.price.multiply(GALLON.deciliterMultiplier), this.currency);
-            default: throw new IllegalArgumentException("Cannot convert into " + unit);
+        if(unitInNewUnits.compareTo(ONE) >= 0) {
+            return new UnitPrice(toUnit, price.divide(unitInNewUnits, RoundingMode.HALF_UP), currency);
         }
-    }
 
-    private UnitPrice fromLiterTo(VolumeUnit unit) {
-        switch (unit) {
-            case DECILITER: return new UnitPrice(DECILITER, this.price.divide(LITER.deciliterMultiplier, RoundingMode.HALF_UP), this.currency);
-            case LITER: return this;
-            case GALLON: return new UnitPrice(GALLON, this.price.divide(LITER.deciliterMultiplier, RoundingMode.HALF_UP).multiply(GALLON.deciliterMultiplier), this.currency);
-            default: throw new IllegalArgumentException("Cannot convert into " + unit);
-        }
+        BigDecimal priceMultiplier = price.divide(unitInNewUnits, RoundingMode.HALF_UP);
+        return new UnitPrice(toUnit, price.multiply(priceMultiplier), currency);
     }
 
     @Override

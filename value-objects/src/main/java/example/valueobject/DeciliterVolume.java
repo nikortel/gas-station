@@ -1,8 +1,13 @@
 package example.valueobject;
 
+import example.conversion.Conversions;
+import example.conversion.Converter;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
+
+import static example.valueobject.VolumeUnit.DECILITER;
 
 /**
  * Represents volume of liquid in deciliters
@@ -26,7 +31,7 @@ public class DeciliterVolume {
         Objects.requireNonNull(amount);
         Objects.requireNonNull(unit);
 
-        return new DeciliterVolume(amount.multiply(unit.deciliterMultiplier));
+        return new DeciliterVolume(Converter.conversion(unit, DECILITER).apply(amount));
     }
 
     public boolean isMoreOrEqualThan(DeciliterVolume volume) {
