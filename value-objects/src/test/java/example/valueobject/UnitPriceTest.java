@@ -1,18 +1,14 @@
 package example.valueobject;
 
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(JUnitPlatform.class)
-public class UnitPriceTest {
+class UnitPriceTest {
 
     @Test
     public void givesSimpleUnitPrice() {
