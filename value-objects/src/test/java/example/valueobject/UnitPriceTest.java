@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 import java.util.Currency;
+import java.util.HashSet;
 
 import static example.valueobject.VolumeUnit.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -84,6 +86,20 @@ class UnitPriceTest {
         UnitPrice unitPriceInLiters = new UnitPrice(LITER, BigDecimal.ONE, EUR);
         UnitPrice unitPriceInGallons = new UnitPrice(GALLON, new BigDecimal("3.7854"), EUR);
         assertEquals(unitPriceInGallons, unitPriceInLiters.convert(GALLON));
+    }
+
+    @Test
+    public void distinctUnitPriceInSet() {
+        var unitPrices = new HashSet<UnitPrice>(Arrays.asList(
+                new UnitPrice(DECILITER, BigDecimal.ONE, EUR),
+                new UnitPrice(DECILITER, BigDecimal.ONE, EUR),
+                new UnitPrice(LITER, BigDecimal.ONE, EUR)));
+
+        var expected = new HashSet<UnitPrice>(Arrays.asList(
+                new UnitPrice(DECILITER, BigDecimal.ONE, EUR),
+                new UnitPrice(LITER, BigDecimal.ONE, EUR)));
+
+        assertEquals(expected, unitPrices);
     }
 
 }
