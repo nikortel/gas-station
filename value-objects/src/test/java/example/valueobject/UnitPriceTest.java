@@ -20,7 +20,7 @@ class UnitPriceTest {
     public void givesSimpleUnitPrice() {
         var price = new UnitPrice(DECILITER, new BigDecimal("100.00"), EUR);
         var expected = Money.eur(new BigDecimal("200.00"));
-        assertEquals(expected, price.grandTotal(new BigDecimal("2"), RoundingMode.HALF_UP));
+        assertEquals(expected, price.grandTotal(new BigDecimal("2")));
     }
 
     @Test
@@ -28,7 +28,7 @@ class UnitPriceTest {
         var expected = Money.eur(new BigDecimal("150.08"));
         var price = new UnitPrice(DECILITER, new BigDecimal("1.0005"), expected.currency());
 
-        assertEquals(expected, price.grandTotal(new BigDecimal("150"), RoundingMode.HALF_UP));
+        assertEquals(expected, price.grandTotal(new BigDecimal("150")));
     }
 
     @Test

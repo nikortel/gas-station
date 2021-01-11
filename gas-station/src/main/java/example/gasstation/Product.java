@@ -27,7 +27,7 @@ public class Product {
     }
 
     public Money calculateCost(DeciliterVolume volume) {
-        return unitPrice.convert(DECILITER).grandTotal(volume.value(), RoundingMode.HALF_UP);
+        return unitPrice.convert(DECILITER).grandTotal(volume.value());
     }
 
     public DeciliterVolume calculateUnits(Money money) {

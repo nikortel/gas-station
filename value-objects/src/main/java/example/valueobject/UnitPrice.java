@@ -30,10 +30,9 @@ public class UnitPrice {
      * Total cost for the requested units
      *
      * @param units
-     * @param roundingMode
      * @return
      */
-    public Money grandTotal(BigDecimal units, RoundingMode roundingMode) {
+    public Money grandTotal(BigDecimal units) {
         return Money.from(units.multiply(price), currency);
     }
 
