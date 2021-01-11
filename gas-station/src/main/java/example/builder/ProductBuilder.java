@@ -66,6 +66,6 @@ public class ProductBuilder {
         Objects.requireNonNull(costPerUnit);
         Objects.requireNonNull(currency);
 
-        return new Product(type, unit, new UnitPrice(costPerUnit, currency));
+        return new Product(type, new UnitPrice(unit, costPerUnit, currency));
     }
 }

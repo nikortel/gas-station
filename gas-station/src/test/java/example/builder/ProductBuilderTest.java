@@ -27,8 +27,7 @@ public class ProductBuilderTest {
                 .build();
 
         assertEquals(E10, product.type());
-        assertEquals(LITER, product.unit());
-        assertEquals(new UnitPrice(new BigDecimal("1.5402"), Currency.getInstance("EUR")), product.unitPrice());
+        assertEquals(new UnitPrice(LITER, new BigDecimal("1.5402"), Currency.getInstance("EUR")), product.unitPrice());
     }
 
 }

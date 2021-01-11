@@ -6,9 +6,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Currency;
+import java.util.HashSet;
 
 import static example.valueobject.Money.*;
+import static java.math.BigDecimal.ONE;
+import static java.math.BigDecimal.TEN;
+import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MoneyTest {
@@ -104,6 +109,19 @@ public class MoneyTest {
     @Test
     public void effectivelySameAmountsAreEqual() {
         assertEquals(eur(new BigDecimal("2")), eur(new BigDecimal("2.00")));
+    }
+
+    @Test
+    public void distinctMoneyInSet() {
+        var moneys = new HashSet<Money>(asList(
+                eur(ONE),
+                eur(ONE),
+                eur(TEN)));
+        var expected = new HashSet<Money>(asList(
+                eur(ONE),
+                eur(TEN)));
+
+        assertEquals(expected, moneys);
     }
 
 }

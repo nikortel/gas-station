@@ -26,10 +26,6 @@ public class DeciliterVolume {
         Objects.requireNonNull(amount);
         Objects.requireNonNull(unit);
 
-        if (amount.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Volume cannot me negative!");
-        }
-
         return new DeciliterVolume(amount.multiply(unit.deciliterMultiplier));
     }
 

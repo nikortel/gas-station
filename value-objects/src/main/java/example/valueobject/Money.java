@@ -48,29 +48,33 @@ public class Money {
     }
 
     public Money add(Money money) {
-        ensureSameBaseAttributes(money);
+        ensureCompatibility(money);
         return from(amount.add(money.amount), currency);
     }
 
     public boolean isMoreThan(Money money) {
-        ensureSameBaseAttributes(money);
+        ensureCompatibility(money);
         return amount.compareTo(money.amount) > 0;
     }
 
     public boolean isLessThan(Money money) {
-        ensureSameBaseAttributes(money);
+        ensureCompatibility(money);
         return amount.compareTo(money.amount) < 0;
     }
 
     public Money subtract(Money money) {
-        ensureSameBaseAttributes(money);
+        ensureCompatibility(money);
         return from(amount.subtract(money.amount), currency);
     }
 
-    private void ensureSameBaseAttributes(Money money) {
-        if (money.currency != currency) {
-            throw new IllegalArgumentException(String.format("Currency [%s] does not match expected currency [%s]", money.currency, currency));
+    public void ensureCompatibility(Money money) {
+        if (hasDifferentCurrency(money.currency)) {
+            throw new IllegalArgumentException(String.format("Money %s does not have same currency as money %s ", this, money));
         }
+    }
+
+    public boolean hasDifferentCurrency(Currency currency) {
+        return this.currency != currency;
     }
 
     @Override
