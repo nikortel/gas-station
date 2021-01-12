@@ -58,13 +58,13 @@ public class PumpTest {
     }
 
     private Pump createE10PumpForTest() {
-        ProductBuilder e95Builder = ProductBuilder
+        ProductBuilder e10Builder = ProductBuilder
                 .e10Builder()
                 .cost(new BigDecimal("1.5432"))
                 .euros()
                 .perLiter();
 
-        TankBuilder tankBuilder = TankBuilder.builder(e95Builder)
+        TankBuilder tankBuilder = TankBuilder.builder(e10Builder)
                 .withMaximumCapacity(DeciliterVolume.from(TEN, LITER));
 
         return PumpBuilder.builder()

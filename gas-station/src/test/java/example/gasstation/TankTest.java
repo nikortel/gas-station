@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TankTest {
 
-    private Product e95 = ProductBuilder
+    private Product e98 = ProductBuilder
             .e98Builder()
             .cost(new BigDecimal("1.5432"))
             .euros()
@@ -23,7 +23,7 @@ public class TankTest {
 
     @Test
     public void fillTank() {
-        var tank = new Tank(new DeciliterVolume(ONE), e95);
+        var tank = new Tank(new DeciliterVolume(ONE), e98);
         DeciliterVolume volumeAdded = tank.fill();
         assertEquals(new DeciliterVolume(ONE), volumeAdded);
         assertEquals(ZERO_VOLUME, tank.capacityAvailable());
@@ -31,7 +31,7 @@ public class TankTest {
 
     @Test
     public void fillNonEmptyTank() {
-        var tank = new Tank(new DeciliterVolume(TEN), e95);
+        var tank = new Tank(new DeciliterVolume(TEN), e98);
         tank.add(new DeciliterVolume(new BigDecimal("7")));
 
         DeciliterVolume volumeAdded = tank.fill();
@@ -41,7 +41,7 @@ public class TankTest {
 
     @Test
     public void fillTankWithNoCapacityLeft() {
-        var tank = new Tank(new DeciliterVolume(TEN), e95);
+        var tank = new Tank(new DeciliterVolume(TEN), e98);
         tank.add(new DeciliterVolume(TEN));
 
         DeciliterVolume volumeAdded = tank.fill();
@@ -51,13 +51,13 @@ public class TankTest {
 
     @Test
     public void removeFromEmptyTank() {
-        var tank = new Tank(new DeciliterVolume(TEN), e95);
+        var tank = new Tank(new DeciliterVolume(TEN), e98);
         assertEquals(ZERO_VOLUME, tank.remove(new DeciliterVolume(TEN)));
     }
 
     @Test
     public void removeAllFromTank() {
-        var tank = new Tank(new DeciliterVolume(TEN), e95);
+        var tank = new Tank(new DeciliterVolume(TEN), e98);
         tank.fill();
         DeciliterVolume removed = tank.remove(new DeciliterVolume(TEN));
 
@@ -67,7 +67,7 @@ public class TankTest {
 
     @Test
     public void removeSomeFromTank() {
-        var tank = new Tank(new DeciliterVolume(TEN), e95);
+        var tank = new Tank(new DeciliterVolume(TEN), e98);
         tank.fill();
         DeciliterVolume removed = tank.remove(new DeciliterVolume(BigDecimal.ONE));
         assertEquals(new DeciliterVolume(BigDecimal.ONE), removed);
