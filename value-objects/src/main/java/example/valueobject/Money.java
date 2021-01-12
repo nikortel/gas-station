@@ -14,7 +14,7 @@ public class Money {
     private final Currency currency;
     private final int scale;
 
-    public Money(BigDecimal amount, Currency currency, int scale) {
+    private Money(BigDecimal amount, Currency currency, int scale) {
         Objects.requireNonNull(amount);
         Objects.requireNonNull(currency);
 
@@ -82,12 +82,12 @@ public class Money {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return amount.equals(money.amount) && currency.equals(money.currency);
+        return scale == money.scale && amount.equals(money.amount) && currency.equals(money.currency);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount, currency);
+        return Objects.hash(amount, currency, scale);
     }
 
     @Override
