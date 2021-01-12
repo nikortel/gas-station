@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.Objects;
-import java.util.function.Function;
 
 import static java.math.BigDecimal.ONE;
 
@@ -30,10 +29,8 @@ public class UnitPrice {
     }
 
     /**
-     * Total cost for the requested units
-     *
      * @param units
-     * @return
+     * @return Total cost for the requested units
      */
     public Money grandTotal(BigDecimal units) {
         return Money.from(units.multiply(price), currency);
@@ -59,7 +56,6 @@ public class UnitPrice {
      * @return Unit price in requested unit
      */
     public UnitPrice convert(VolumeUnit toUnit) {
-        Function<BigDecimal, BigDecimal> converter = Converter.conversion(unit, toUnit);
         BigDecimal unitInNewUnits = Converter.conversion(unit, toUnit).apply(ONE.setScale(10));
 
         if(unitInNewUnits.compareTo(ONE) >= 0) {
