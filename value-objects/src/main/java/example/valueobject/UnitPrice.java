@@ -45,8 +45,8 @@ public class UnitPrice {
         if (money.hasDifferentCurrency(currency)) {
             throw new IllegalArgumentException("Incorrect currency!");
         }
-
-        return money.amount().divide(price, 1, roundingMode);
+        var round_to_scale = 1;
+        return money.amount().divide(price, round_to_scale, roundingMode);
     }
 
     /**
