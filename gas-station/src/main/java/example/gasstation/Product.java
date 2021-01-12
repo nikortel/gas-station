@@ -4,8 +4,6 @@ import example.valueobject.DeciliterVolume;
 import example.valueobject.Money;
 import example.valueobject.UnitPrice;
 
-import java.math.RoundingMode;
-
 import static example.valueobject.VolumeUnit.DECILITER;
 
 public class Product {
@@ -31,6 +29,6 @@ public class Product {
     }
 
     public DeciliterVolume calculateUnits(Money money) {
-        return new DeciliterVolume(unitPrice.convert(DECILITER).units(money, RoundingMode.DOWN));
+        return new DeciliterVolume(unitPrice.convert(DECILITER).units(money));
     }
 }

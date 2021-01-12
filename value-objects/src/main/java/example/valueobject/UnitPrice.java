@@ -28,6 +28,10 @@ public class UnitPrice {
         this.currency = currency;
     }
 
+    public static UnitPrice eur(VolumeUnit unit, BigDecimal price) {
+        return new UnitPrice(unit, price, Currency.getInstance("EUR"));
+    }
+
     /**
      * @param units
      * @return Total cost for the requested units
@@ -38,15 +42,14 @@ public class UnitPrice {
 
     /**
      * @param money
-     * @param roundingMode
      * @return Number of units than can be purchased with the given amount of money
      */
-    public BigDecimal units(Money money, RoundingMode roundingMode) {
+    public BigDecimal units(Money money) {
         if (money.hasDifferentCurrency(currency)) {
             throw new IllegalArgumentException("Incorrect currency!");
         }
         var round_to_scale = 1;
-        return money.amount().divide(price, round_to_scale, roundingMode);
+        return money.amount().divide(price, round_to_scale, RoundingMode.DOWN);
     }
 
     /**

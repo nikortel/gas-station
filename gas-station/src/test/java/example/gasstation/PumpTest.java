@@ -16,6 +16,8 @@ import static example.gasstation.ProductType.DIESEL;
 import static example.gasstation.ProductType.E10;
 import static example.valueobject.VolumeUnit.GALLON;
 import static example.valueobject.VolumeUnit.LITER;
+import static java.math.BigDecimal.ONE;
+import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -27,8 +29,8 @@ public class PumpTest {
         Pump pump = createE10PumpForTest();
         pump.fillTank(E10);
 
-        Receipt receipt = pump.get(DeciliterVolume.from(BigDecimal.ONE, LITER), E10);
-        Receipt expected = new Receipt(new DeciliterVolume(BigDecimal.TEN), Money.eur(new BigDecimal("1.54")));
+        Receipt receipt = pump.get(DeciliterVolume.from(ONE, LITER), E10);
+        Receipt expected = new Receipt(new DeciliterVolume(TEN), Money.eur(new BigDecimal("1.54")));
         assertEquals(expected, receipt);
     }
 
@@ -37,7 +39,7 @@ public class PumpTest {
         Pump pump = createE10PumpForTest();
         pump.fillTank(E10);
 
-        Receipt receipt = pump.get(DeciliterVolume.from(BigDecimal.ONE, GALLON), E10);
+        Receipt receipt = pump.get(DeciliterVolume.from(ONE, GALLON), E10);
         Receipt expected = new Receipt(new DeciliterVolume(new BigDecimal("37.85")), Money.eur(new BigDecimal("5.84")));
         assertEquals(expected, receipt);
     }
@@ -47,8 +49,8 @@ public class PumpTest {
         Pump pump = createE10PumpForTest();
         pump.fillTank(E10);
 
-        Receipt receipt = pump.get(Money.eur(BigDecimal.TEN), E10);
-        Receipt expected = new Receipt(new DeciliterVolume(new BigDecimal("64.80")), Money.eur(BigDecimal.TEN));
+        Receipt receipt = pump.get(Money.eur(TEN), E10);
+        Receipt expected = new Receipt(new DeciliterVolume(new BigDecimal("64.80")), Money.eur(TEN));
         assertEquals(expected, receipt);
     }
 
@@ -66,7 +68,7 @@ public class PumpTest {
                 .perLiter();
 
         TankBuilder tankBuilder = TankBuilder.builder(e95Builder)
-                .withMaximumCapacity(DeciliterVolume.from(BigDecimal.TEN, LITER));
+                .withMaximumCapacity(DeciliterVolume.from(TEN, LITER));
 
         return PumpBuilder.builder()
                 .withTank(tankBuilder)

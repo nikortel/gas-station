@@ -1,6 +1,5 @@
 package example.builder;
 
-import example.builder.ProductBuilder;
 import example.gasstation.Product;
 import example.valueobject.UnitPrice;
 import org.junit.jupiter.api.Test;
@@ -8,7 +7,6 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 
 import static example.gasstation.ProductType.E10;
 import static example.valueobject.VolumeUnit.LITER;
@@ -27,7 +25,7 @@ public class ProductBuilderTest {
                 .build();
 
         assertEquals(E10, product.type());
-        assertEquals(new UnitPrice(LITER, new BigDecimal("1.5402"), Currency.getInstance("EUR")), product.unitPrice());
+        assertEquals(UnitPrice.eur(LITER, new BigDecimal("1.5402")), product.unitPrice());
     }
 
 }
