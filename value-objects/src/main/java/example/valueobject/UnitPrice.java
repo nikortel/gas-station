@@ -56,14 +56,8 @@ public class UnitPrice {
      * @return Unit price in requested unit
      */
     public UnitPrice convert(VolumeUnit toUnit) {
-        BigDecimal unitInNewUnits = Converter.conversion(unit, toUnit).apply(ONE.setScale(10));
-
-        if(unitInNewUnits.compareTo(ONE) >= 0) {
-            return new UnitPrice(toUnit, price.divide(unitInNewUnits, RoundingMode.HALF_UP), currency);
-        }
-
-        BigDecimal priceMultiplier = price.divide(unitInNewUnits, RoundingMode.HALF_UP);
-        return new UnitPrice(toUnit, price.multiply(priceMultiplier), currency);
+        BigDecimal unitRatio = Converter.conversion(unit, toUnit).apply(ONE.setScale(10));
+        return new UnitPrice(toUnit, price.divide(unitRatio, RoundingMode.HALF_UP), currency);
     }
 
     @Override

@@ -89,6 +89,13 @@ class UnitPriceTest {
     }
 
     @Test
+    public void convertsGallonsToLiters() {
+        UnitPrice unitPriceInGallons = new UnitPrice(GALLON, BigDecimal.ONE, EUR);
+        UnitPrice unitPriceInLiters = new UnitPrice(LITER, new BigDecimal("0.2642"), EUR);
+        assertEquals(unitPriceInLiters, unitPriceInGallons.convert(LITER));
+    }
+
+    @Test
     public void distinctUnitPriceInSet() {
         var unitPrices = new HashSet<UnitPrice>(Arrays.asList(
                 new UnitPrice(DECILITER, BigDecimal.ONE, EUR),
