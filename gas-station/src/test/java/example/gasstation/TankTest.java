@@ -3,8 +3,6 @@ package example.gasstation;
 import example.builder.ProductBuilder;
 import example.valueobject.DeciliterVolume;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 
@@ -14,7 +12,6 @@ import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(JUnitPlatform.class)
 public class TankTest {
 
     private Product e95 = ProductBuilder

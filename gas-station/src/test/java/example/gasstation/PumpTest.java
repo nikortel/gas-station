@@ -6,8 +6,6 @@ import example.builder.TankBuilder;
 import example.valueobject.DeciliterVolume;
 import example.valueobject.Money;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
 import java.util.NoSuchElementException;
@@ -21,7 +19,6 @@ import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(JUnitPlatform.class)
 public class PumpTest {
 
     @Test
