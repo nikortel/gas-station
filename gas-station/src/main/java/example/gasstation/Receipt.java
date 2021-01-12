@@ -19,17 +19,12 @@ public class Receipt {
         this.cost = cost;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Receipt receipt = (Receipt) o;
-        return volume.equals(receipt.volume) && cost.equals(receipt.cost);
+    public DeciliterVolume volume() {
+        return volume;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(volume, cost);
+    public Money cost() {
+        return cost;
     }
 
     @Override

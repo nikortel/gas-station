@@ -27,8 +27,9 @@ public class PumpTest {
         pump.fillTank(E10);
 
         Receipt receipt = pump.get(DeciliterVolume.from(ONE, LITER), E10);
-        Receipt expected = new Receipt(new DeciliterVolume(TEN), Money.eur(new BigDecimal("1.54")));
-        assertEquals(expected, receipt);
+
+        assertEquals(new DeciliterVolume(TEN), receipt.volume());
+        assertEquals(Money.eur(new BigDecimal("1.54")), receipt.cost());
     }
 
     @Test
@@ -37,8 +38,9 @@ public class PumpTest {
         pump.fillTank(E10);
 
         Receipt receipt = pump.get(DeciliterVolume.from(ONE, GALLON), E10);
-        Receipt expected = new Receipt(new DeciliterVolume(new BigDecimal("37.85")), Money.eur(new BigDecimal("5.84")));
-        assertEquals(expected, receipt);
+        assertEquals(new DeciliterVolume(new BigDecimal("37.85")), receipt.volume());
+        assertEquals(Money.eur(new BigDecimal("5.84")), receipt.cost());
+
     }
 
     @Test
@@ -47,8 +49,9 @@ public class PumpTest {
         pump.fillTank(E10);
 
         Receipt receipt = pump.get(Money.eur(TEN), E10);
-        Receipt expected = new Receipt(new DeciliterVolume(new BigDecimal("64.80")), Money.eur(TEN));
-        assertEquals(expected, receipt);
+        assertEquals(new DeciliterVolume(new BigDecimal("64.80")), receipt.volume());
+        assertEquals(Money.eur(TEN), receipt.cost());
+
     }
 
     @Test
