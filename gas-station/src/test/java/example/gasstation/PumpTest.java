@@ -55,6 +55,16 @@ public class PumpTest {
     }
 
     @Test
+    public void getsLessThanRequested() {
+        Pump pump = createE10PumpForTest();
+        pump.add(DeciliterVolume.from(ONE, LITER), E10);
+
+        Receipt receipt = pump.get(Money.eur(TEN), E10);
+        assertEquals(new DeciliterVolume(TEN), receipt.volume());
+        assertEquals(Money.eur(new BigDecimal("1.54")), receipt.cost());
+    }
+
+    @Test
     public void noSuchProductThrowsException() {
         Pump pump = createE10PumpForTest();
         assertThrows(NoSuchElementException.class, () -> pump.fillTank(DIESEL));

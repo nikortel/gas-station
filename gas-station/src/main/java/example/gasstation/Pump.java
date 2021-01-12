@@ -21,6 +21,10 @@ public class Pump {
         return findByType(type).fill();
     }
 
+    public DeciliterVolume add(DeciliterVolume volume, ProductType type) {
+        return findByType(type).add(volume);
+    }
+
     public Receipt get(DeciliterVolume volume, ProductType type) {
         Tank tank = findByType(type);
         DeciliterVolume removed = tank.remove(volume);
