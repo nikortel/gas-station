@@ -27,7 +27,7 @@ public class TankTest {
         var tank = new Tank(new DeciliterVolume(ONE), e95);
         DeciliterVolume volumeAdded = tank.fill();
         assertEquals(new DeciliterVolume(ONE), volumeAdded);
-        assertEquals(DeciliterVolume.ZERO, tank.capacityAvailable());
+        assertEquals(DeciliterVolume.ZERO_VOLUME, tank.capacityAvailable());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TankTest {
 
         DeciliterVolume volumeAdded = tank.fill();
         assertEquals(new DeciliterVolume(new BigDecimal("3")), volumeAdded);
-        assertEquals(DeciliterVolume.ZERO, tank.capacityAvailable());
+        assertEquals(DeciliterVolume.ZERO_VOLUME, tank.capacityAvailable());
     }
 
     @Test
@@ -47,13 +47,13 @@ public class TankTest {
 
         DeciliterVolume volumeAdded = tank.fill();
         assertEquals(new DeciliterVolume(BigDecimal.ZERO), volumeAdded);
-        assertEquals(DeciliterVolume.ZERO, tank.capacityAvailable());
+        assertEquals(DeciliterVolume.ZERO_VOLUME, tank.capacityAvailable());
     }
 
     @Test
     public void removeFromEmptyTank() {
         var tank = new Tank(new DeciliterVolume(BigDecimal.TEN), e95);
-        assertEquals(DeciliterVolume.ZERO, tank.remove(new DeciliterVolume(BigDecimal.TEN)));
+        assertEquals(DeciliterVolume.ZERO_VOLUME, tank.remove(new DeciliterVolume(BigDecimal.TEN)));
     }
 
     @Test

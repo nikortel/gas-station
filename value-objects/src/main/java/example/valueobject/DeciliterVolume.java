@@ -8,19 +8,20 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 import static example.valueobject.VolumeUnit.DECILITER;
+import static java.math.BigDecimal.ZERO;
 
 /**
  * Represents volume of liquid in deciliters
  */
 public class DeciliterVolume {
-    public static DeciliterVolume ZERO = new DeciliterVolume(BigDecimal.ZERO);
+    public static DeciliterVolume ZERO_VOLUME = new DeciliterVolume(ZERO);
 
     private final BigDecimal volume;
 
     public DeciliterVolume(BigDecimal volume) {
         Objects.requireNonNull(volume);
 
-        if (volume.compareTo(BigDecimal.ZERO) < 0) {
+        if (volume.compareTo(ZERO) < 0) {
             throw new IllegalArgumentException("Volume cannot me negative!");
         }
 

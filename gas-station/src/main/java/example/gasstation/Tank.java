@@ -17,7 +17,7 @@ public class Tank {
         Objects.requireNonNull(capacity);
         this.capacity = capacity;
         this.product = product;
-        this.currentVolume = DeciliterVolume.ZERO;
+        this.currentVolume = DeciliterVolume.ZERO_VOLUME;
     }
 
     /**
@@ -69,7 +69,7 @@ public class Tank {
      * @return True if the tank is empty
      */
     public boolean isEmpty() {
-        return DeciliterVolume.ZERO.equals(currentVolume);
+        return DeciliterVolume.ZERO_VOLUME.equals(currentVolume);
     }
 
     /**
