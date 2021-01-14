@@ -8,6 +8,9 @@ import example.valueobject.Money;
 import example.valueobject.UnitPrice;
 import example.valueobject.VolumeUnit;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -22,7 +25,10 @@ import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class PumpTest {
 
     private final Currency EUR = Currency.getInstance("EUR");
@@ -74,21 +80,14 @@ public class PumpTest {
 
     @Test
     public void failsWhenNonUniqueProductsAdded() {
-        ProductBuilder e10Builder = ProductBuilder
-                .e10Builder()
-                .cost(new BigDecimal("1.5432"))
-                .euros()
-                .perLiter();
+        Pump pump = new Pump();
+        Tank tank = mock(Tank.class);
+        when(tank.type()).thenReturn(E10);
 
-        TankBuilder tankBuilder = TankBuilder.builder(e10Builder)
-                .withMaximumCapacity(DeciliterVolume.from(TEN, LITER));
-        TankBuilder tankBuilder2 = TankBuilder.builder(e10Builder)
-                .withMaximumCapacity(DeciliterVolume.from(ONE, LITER));
-
-        assertThrows(IllegalArgumentException.class, () -> PumpBuilder.builder()
-                .withTank(tankBuilder)
-                .withTank(tankBuilder2)
-                .build());
+        assertThrows(IllegalArgumentException.class,
+                () -> pump
+                .addTank(tank)
+                .addTank(tank));
     }
 
     private Pump createE10PumpForTest() {

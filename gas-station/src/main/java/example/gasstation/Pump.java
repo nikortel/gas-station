@@ -17,12 +17,13 @@ public class Pump {
     public Pump() {
     }
 
-    public void addTank(Tank tank) {
+    public Pump addTank(Tank tank) {
         if(findByType(tank.type()).isPresent()) {
             throw new IllegalArgumentException("One pump can contain only unique products!");
         }
 
         tanks.add(tank);
+        return this;
     }
 
     public DeciliterVolume fillTank(ProductType type) {
