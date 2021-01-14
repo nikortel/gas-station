@@ -93,5 +93,6 @@ public class Tank {
     public ProductType type() {
         return product.type();
     }
+    public Product product() { return product; }
 
 }

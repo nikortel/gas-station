@@ -5,13 +5,17 @@ import example.builder.PumpBuilder;
 import example.builder.TankBuilder;
 import example.valueobject.DeciliterVolume;
 import example.valueobject.Money;
+import example.valueobject.UnitPrice;
+import example.valueobject.VolumeUnit;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.NoSuchElementException;
 
 import static example.gasstation.ProductType.DIESEL;
 import static example.gasstation.ProductType.E10;
+import static example.valueobject.Money.eur;
 import static example.valueobject.VolumeUnit.GALLON;
 import static example.valueobject.VolumeUnit.LITER;
 import static java.math.BigDecimal.ONE;
@@ -21,6 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PumpTest {
 
+    private final Currency EUR = Currency.getInstance("EUR");
+
     @Test
     public void getLiterOfGas() {
         Pump pump = createE10PumpForTest();
@@ -29,7 +35,8 @@ public class PumpTest {
         Receipt receipt = pump.get(DeciliterVolume.from(ONE, LITER), E10);
 
         assertEquals(new DeciliterVolume(TEN), receipt.volume());
-        assertEquals(Money.eur(new BigDecimal("1.54")), receipt.cost());
+        assertEquals(eur(new BigDecimal("1.54")), receipt.cost());
+        assertE10Receipt(receipt, new DeciliterVolume(TEN), eur(new BigDecimal("1.54")));
     }
 
     @Test
@@ -38,9 +45,7 @@ public class PumpTest {
         pump.fillTank(E10);
 
         Receipt receipt = pump.get(DeciliterVolume.from(ONE, GALLON), E10);
-        assertEquals(new DeciliterVolume(new BigDecimal("37.85")), receipt.volume());
-        assertEquals(Money.eur(new BigDecimal("5.84")), receipt.cost());
-
+        assertE10Receipt(receipt, new DeciliterVolume(new BigDecimal("37.85")), eur(new BigDecimal("5.84")));
     }
 
     @Test
@@ -48,10 +53,8 @@ public class PumpTest {
         Pump pump = createE10PumpForTest();
         pump.fillTank(E10);
 
-        Receipt receipt = pump.get(Money.eur(TEN), E10);
-        assertEquals(new DeciliterVolume(new BigDecimal("64.80")), receipt.volume());
-        assertEquals(Money.eur(TEN), receipt.cost());
-
+        Receipt receipt = pump.get(eur(TEN), E10);
+        assertE10Receipt(receipt, new DeciliterVolume(new BigDecimal("64.80")), eur(TEN));
     }
 
     @Test
@@ -59,9 +62,8 @@ public class PumpTest {
         Pump pump = createE10PumpForTest();
         pump.add(DeciliterVolume.from(ONE, LITER), E10);
 
-        Receipt receipt = pump.get(Money.eur(TEN), E10);
-        assertEquals(new DeciliterVolume(TEN), receipt.volume());
-        assertEquals(Money.eur(new BigDecimal("1.54")), receipt.cost());
+        Receipt receipt = pump.get(eur(TEN), E10);
+        assertE10Receipt(receipt, new DeciliterVolume(TEN), eur(new BigDecimal("1.5432")));
     }
 
     @Test
@@ -83,6 +85,13 @@ public class PumpTest {
         return PumpBuilder.builder()
                 .withTank(tankBuilder)
                 .build();
+    }
+
+    private void assertE10Receipt(Receipt receipt, DeciliterVolume volume, Money cost) {
+        assertEquals(volume, receipt.volume());
+        assertEquals(cost, receipt.cost());
+        assertEquals(new UnitPrice(LITER, new BigDecimal("1.5432"), EUR), receipt.product().unitPrice());
+        assertEquals(E10, receipt.product().type());
     }
 
 }

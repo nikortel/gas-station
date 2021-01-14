@@ -1,25 +1,26 @@
 package example.gasstation;
 
-import example.builder.ProductBuilder;
 import example.valueobject.DeciliterVolume;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 
 import static example.valueobject.DeciliterVolume.ZERO_VOLUME;
+import static example.valueobject.Money.eur;
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class TankTest {
 
-    private Product e98 = ProductBuilder
-            .e98Builder()
-            .cost(new BigDecimal("1.5432"))
-            .euros()
-            .perLiter()
-            .build();
+    @Mock
+    private Product e98;
 
     @Test
     public void fillTank() {
@@ -72,6 +73,20 @@ public class TankTest {
         DeciliterVolume removed = tank.remove(new DeciliterVolume(BigDecimal.ONE));
         assertEquals(new DeciliterVolume(BigDecimal.ONE), removed);
         assertEquals(new DeciliterVolume(new BigDecimal("9")), tank.productAvailable());
+    }
+
+    @Test
+    public void calculatesCost() {
+        var tank = new Tank(new DeciliterVolume(TEN), e98);
+        when(e98.calculateCost(new DeciliterVolume(TEN))).thenReturn(eur(new BigDecimal("1.54")));
+        assertEquals(eur(new BigDecimal("1.54")), tank.calculateCost(new DeciliterVolume(TEN)));
+    }
+
+    @Test
+    public void calculatesVolume() {
+        var tank = new Tank(new DeciliterVolume(TEN), e98);
+        when(e98.calculateUnits(eur(TEN))).thenReturn(new DeciliterVolume(ONE));
+        assertEquals(new DeciliterVolume(ONE), tank.calculateVolume(eur(TEN)));
     }
 
 }

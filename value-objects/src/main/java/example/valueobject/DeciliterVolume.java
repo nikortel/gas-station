@@ -1,6 +1,5 @@
 package example.valueobject;
 
-import example.conversion.Conversions;
 import example.conversion.Converter;
 
 import java.math.BigDecimal;

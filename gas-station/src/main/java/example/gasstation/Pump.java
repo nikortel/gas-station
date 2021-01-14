@@ -29,7 +29,7 @@ public class Pump {
         Tank tank = findByType(type);
         DeciliterVolume removed = tank.remove(volume);
         Money cost = tank.calculateCost(removed);
-        return new Receipt(removed, cost);
+        return new Receipt(removed, cost, tank.product());
     }
 
     public Receipt get(Money money, ProductType type) {

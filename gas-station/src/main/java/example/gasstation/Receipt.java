@@ -11,12 +11,14 @@ import java.util.Objects;
 public class Receipt {
     private final DeciliterVolume volume;
     private final Money cost;
+    private final Product product;
 
-    public Receipt(DeciliterVolume volume, Money cost) {
+    public Receipt(DeciliterVolume volume, Money cost, Product product) {
         Objects.requireNonNull(volume);
         Objects.requireNonNull(cost);
         this.volume = volume;
         this.cost = cost;
+        this.product = product;
     }
 
     public DeciliterVolume volume() {
@@ -27,11 +29,17 @@ public class Receipt {
         return cost;
     }
 
+    public Product product() {
+        return product;
+    }
+
     @Override
     public String toString() {
-        return "Receipt{" +
-                "volume=" + volume +
-                ", cost=" + cost +
-                '}';
+        final StringBuilder sb = new StringBuilder("Receipt{");
+        sb.append("volume=").append(volume);
+        sb.append(", cost=").append(cost);
+        sb.append(", product=").append(product);
+        sb.append('}');
+        return sb.toString();
     }
 }
