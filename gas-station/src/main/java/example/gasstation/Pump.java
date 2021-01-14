@@ -6,6 +6,7 @@ import example.valueobject.Money;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Represents a gad pump as gas station.
@@ -14,6 +15,16 @@ public class Pump {
     private final Collection<Tank> tanks = new ArrayList<>();
 
     public Pump(Collection<Tank> tanks) {
+        long uniqueProducts = tanks.stream()
+                .map(Tank::product)
+                .map(Product::type)
+                .distinct()
+                .count();
+
+        if(uniqueProducts != tanks.size()) {
+            throw new IllegalArgumentException("One pump can contain only unique products!");
+        }
+
         this.tanks.addAll(tanks);
     }
 

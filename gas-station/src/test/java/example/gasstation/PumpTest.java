@@ -72,6 +72,25 @@ public class PumpTest {
         assertThrows(NoSuchElementException.class, () -> pump.fillTank(DIESEL));
     }
 
+    @Test
+    public void failsWhenNonUniqueProductsAdded() {
+        ProductBuilder e10Builder = ProductBuilder
+                .e10Builder()
+                .cost(new BigDecimal("1.5432"))
+                .euros()
+                .perLiter();
+
+        TankBuilder tankBuilder = TankBuilder.builder(e10Builder)
+                .withMaximumCapacity(DeciliterVolume.from(TEN, LITER));
+        TankBuilder tankBuilder2 = TankBuilder.builder(e10Builder)
+                .withMaximumCapacity(DeciliterVolume.from(ONE, LITER));
+
+        assertThrows(IllegalArgumentException.class, () -> PumpBuilder.builder()
+                .withTank(tankBuilder)
+                .withTank(tankBuilder2)
+                .build());
+    }
+
     private Pump createE10PumpForTest() {
         ProductBuilder e10Builder = ProductBuilder
                 .e10Builder()
