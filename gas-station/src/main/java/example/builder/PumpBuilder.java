@@ -23,6 +23,8 @@ public class PumpBuilder {
         Collection<Tank> tanks = tankBuilders.stream()
                 .map(TankBuilder::build)
                 .collect(Collectors.toList());
-        return new Pump(tanks);
+        Pump pump = new Pump();
+        tanks.forEach(pump::addTank);
+        return pump;
     }
 }

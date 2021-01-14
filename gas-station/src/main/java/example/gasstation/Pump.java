@@ -6,7 +6,6 @@ import example.valueobject.Money;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Represents a gas pump at gas station.
@@ -14,18 +13,15 @@ import java.util.stream.Collectors;
 public class Pump {
     private final Collection<Tank> tanks = new ArrayList<>();
 
-    public Pump(Collection<Tank> tanks) {
-        long uniqueProducts = tanks.stream()
-                .map(Tank::product)
-                .map(Product::type)
-                .distinct()
-                .count();
+    public Pump() {
+    }
 
-        if(uniqueProducts != tanks.size()) {
+    public void addTank(Tank tank) {
+        if(hasTankWithProductType(tank.type())) {
             throw new IllegalArgumentException("One pump can contain only unique products!");
         }
 
-        this.tanks.addAll(tanks);
+        tanks.add(tank);
     }
 
     public DeciliterVolume fillTank(ProductType type) {
@@ -58,5 +54,14 @@ public class Pump {
     private Predicate<Tank> byType(ProductType type) {
         return x -> type.equals(x.type());
     }
+
+    private boolean hasTankWithProductType(ProductType type) {
+        return tanks.stream()
+                .map(Tank::product)
+                .map(Product::type)
+                .filter(x -> type.equals(x))
+                .findAny().isPresent();
+    }
+
 
 }
