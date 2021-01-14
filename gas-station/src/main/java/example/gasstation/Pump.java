@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Represents a gad pump as gas station.
+ * Represents a gas pump at gas station.
  */
 public class Pump {
     private final Collection<Tank> tanks = new ArrayList<>();
