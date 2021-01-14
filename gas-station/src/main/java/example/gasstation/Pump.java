@@ -41,7 +41,7 @@ public class Pump {
     }
 
     public Receipt get(Money money, ProductType type) {
-        Tank tank = findByType(type).orElseThrow();
+        Tank tank = getByType(type);
         return get(tank.calculateVolume(money), type);
     }
 
