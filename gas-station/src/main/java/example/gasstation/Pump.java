@@ -5,6 +5,7 @@ import example.valueobject.Money;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -17,7 +18,7 @@ public class Pump {
     }
 
     public void addTank(Tank tank) {
-        if(hasTankWithProductType(tank.type())) {
+        if(findByType(tank.type()).isPresent()) {
             throw new IllegalArgumentException("One pump can contain only unique products!");
         }
 
@@ -25,43 +26,36 @@ public class Pump {
     }
 
     public DeciliterVolume fillTank(ProductType type) {
-        return findByType(type).fill();
+        return getByType(type).fill();
     }
 
     public DeciliterVolume add(DeciliterVolume volume, ProductType type) {
-        return findByType(type).add(volume);
+        return getByType(type).add(volume);
     }
 
     public Receipt get(DeciliterVolume volume, ProductType type) {
-        Tank tank = findByType(type);
+        Tank tank = getByType(type);
         DeciliterVolume removed = tank.remove(volume);
         Money cost = tank.calculateCost(removed);
         return new Receipt(removed, cost, tank.product());
     }
 
     public Receipt get(Money money, ProductType type) {
-        Tank tank = findByType(type);
+        Tank tank = findByType(type).orElseThrow();
         return get(tank.calculateVolume(money), type);
     }
 
-    public Tank findByType(ProductType type) {
+    private Optional<Tank> findByType(ProductType type) {
         return tanks.stream()
                 .filter(byType(type))
-                .findFirst()
-                .orElseThrow();
+                .findFirst();
+    }
+
+    private Tank getByType(ProductType type) {
+        return findByType(type).orElseThrow();
     }
 
     private Predicate<Tank> byType(ProductType type) {
         return x -> type.equals(x.type());
     }
-
-    private boolean hasTankWithProductType(ProductType type) {
-        return tanks.stream()
-                .map(Tank::product)
-                .map(Product::type)
-                .filter(x -> type.equals(x))
-                .findAny().isPresent();
-    }
-
-
 }
