@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 
 public class TankBuilder {
     private DeciliterVolume capacity;
-    private ProductBuilder productBuilder;
+    private Builder<Product> productBuilder;
 
-    private TankBuilder(ProductBuilder productBuilder) {
+    private TankBuilder(Builder<Product> productBuilder) {
         this.productBuilder = productBuilder;
         this.capacity = new DeciliterVolume(BigDecimal.ZERO);
     }
 
-    public static TankBuilder builder(ProductBuilder productBuilder) {
+    public static TankBuilder builder(Builder<Product> productBuilder) {
         return new TankBuilder(productBuilder);
     }
 

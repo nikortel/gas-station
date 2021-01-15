@@ -1,5 +1,6 @@
 package example.gasstation;
 
+import example.builder.Builder;
 import example.builder.ProductBuilder;
 import example.builder.PumpBuilder;
 import example.builder.TankBuilder;
@@ -91,7 +92,7 @@ public class PumpTest {
     }
 
     private Pump createE10PumpForTest() {
-        ProductBuilder e10Builder = ProductBuilder
+        Builder<Product> e10Builder = ProductBuilder
                 .e10Builder()
                 .cost(new BigDecimal("1.5432"))
                 .euros()
