@@ -70,6 +70,7 @@ public class ProductBuilder implements
         return this;
     }
 
+    @Override
     public Product build() {
         return new Product(type, new UnitPrice(unit, costPerUnit, currency));
     }

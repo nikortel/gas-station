@@ -32,6 +32,10 @@ public class UnitPrice {
         return new UnitPrice(unit, price, Currency.getInstance("EUR"));
     }
 
+    public static UnitPrice usd(VolumeUnit unit, BigDecimal price) {
+        return new UnitPrice(unit, price, Currency.getInstance("USD"));
+    }
+
     /**
      * @param units
      * @return Total cost for the requested units
