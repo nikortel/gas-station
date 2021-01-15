@@ -41,18 +41,6 @@ public class ProductBuilder implements
     }
 
     @Override
-    public Builder<Product> perLiter() {
-        this.unit = LITER;
-        return this;
-    }
-
-    @Override
-    public Builder<Product> perGallon() {
-        this.unit = GALLON;
-        return this;
-    }
-
-    @Override
     public ProductCostCurrencyBuilder cost(BigDecimal costPerUnit) {
         this.costPerUnit = costPerUnit;
         return this;
@@ -67,6 +55,18 @@ public class ProductBuilder implements
     @Override
     public ProductImperialVolumeUnitBuilder dollars() {
         this.currency = Currency.getInstance("USD");
+        return this;
+    }
+
+    @Override
+    public Builder<Product> perLiter() {
+        this.unit = LITER;
+        return this;
+    }
+
+    @Override
+    public Builder<Product> perGallon() {
+        this.unit = GALLON;
         return this;
     }
 
